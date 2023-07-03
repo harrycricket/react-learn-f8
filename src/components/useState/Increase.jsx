@@ -1,8 +1,8 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
-const totalPrice = [100, 200, 300];
+export default function Increase() {
+  const totalPrice = [100, 200, 300];
 
-function App() {
   const [counter, setCounter] = useState(() => {
     return totalPrice.reduce((total, current) => total + current);
   });
@@ -16,5 +16,3 @@ function App() {
     </>
   );
 }
-
-export default App;
