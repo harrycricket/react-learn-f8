@@ -24,20 +24,31 @@ const courses = [
 ];
 
 export default function TwowayBinding() {
-  const [checked, setChecked] = useState();
+  const [checked, setChecked] = useState([]);
   console.log(checked);
   const handleSubmit = () => {
     console.log(checked);
-    console.log(courses[checked - 1]);
   };
+
+  const handleChecked = (id) => {
+    setChecked((prev) => {
+      const isChecked = checked.includes(id);
+      if (isChecked) {
+        return checked.filter((item) => item !== id);
+      } else {
+        return [...prev, id];
+      }
+    });
+  };
+
   return (
     <div style={{ padding: "2rem" }}>
       {courses.map((course) => (
         <div key={course.id}>
           <input
-            type="radio"
-            onChange={() => setChecked(course.id)}
-            checked={checked === course.id}
+            type="checkbox"
+            onChange={() => handleChecked(course.id)}
+            checked={checked.includes(course.id)}
           />
           {course.name}
         </div>
